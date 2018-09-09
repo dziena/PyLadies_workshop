@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kategorie</title>
+</head>
+<body>
+    <form method="POST" action="/category/">
+        {% csrf_token %}
+        <!--screens data from form as <p>-->
+        {{ category_create_form.as_p }}
+        <input type="submit" value="Dodaj" />
+
+    </form>
+    {% for category in all_categories %}
+        <p>{{ category.name }}</p>
+    {% endfor %}
+
+</body>
+</html>

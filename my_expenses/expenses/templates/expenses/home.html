@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wydatki</title>
+</head>
+<body>
+    <ul>
+        <li><a href="/category/"> Kategorie </a></li>
+    </ul>
+    <form method="POST" action="/">
+        {% csrf_token %}
+        <!--screens data from form as <p>-->
+        {{ expense_create_form.as_p }}
+        <input type="submit" value="Dodaj" />
+
+    </form>
+    {% for expense in all_expenses %}
+        <p>{{ expense.name }}, {{ expense.price }}, {{ expense.bought_at }}</p>
+    {% endfor %}
+    <form method="GET" action="/">
+        {{ expense_choice_form.as_p }}
+        <input type="submit" value="Filtruj" />
+    </form>
+
+    <p>Suma wydatków w podanym miesiącu wynosi: {{ sum_of_expences }}</p>
+</body>
+</html>
